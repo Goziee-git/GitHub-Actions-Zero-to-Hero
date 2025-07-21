@@ -2,12 +2,12 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "my-github-actions-test" ]
     paths:
       - 'java-project/**'
       - '.github/workflows/java-ci.yml'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "my-github-actions-test" ]
     paths:
       - 'java-project/**'
       - '.github/workflows/java-ci.yml'
