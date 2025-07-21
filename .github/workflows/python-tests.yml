@@ -3,15 +3,21 @@ name: Python Tests
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'python-project/**'
+      - '.github/workflows/python-tests.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'python-project/**'
+      - '.github/workflows/python-tests.yml'
 
 jobs:
   test:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -20,14 +26,15 @@ jobs:
     
     - name: Install dependencies
       run: |
+        cd python-project
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
     - name: Run tests
       run: |
-        cd src
-        python -m addition
+        cd python-project/src
+        python calculator.py
     
     - name: Notify on success
       if: success()
-      run: echo "Tests passed successfully!"
+      run: echo "Python tests passed successfully!"
