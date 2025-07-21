@@ -1,0 +1,43 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'java-project/**'
+      - '.github/workflows/java-ci.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'java-project/**'
+      - '.github/workflows/java-ci.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Build with Maven
+      run: |
+        cd java-project
+        mvn -B package --file pom.xml
+      
+    - name: Run Tests
+      run: |
+        cd java-project
+        mvn test
+      
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-jar
+        path: java-project/target/*.jar
