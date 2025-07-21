@@ -1,0 +1,2 @@
+# No specific requirements for this simple calculator project
+# Add any dependencies here if needed in the future
