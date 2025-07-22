@@ -2,10 +2,10 @@ name: Java CI with Gradle
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ my-github-actions-test ]
-    paths:
-      - 'java-with-gradle/**'
+ # push:
+  #  branches: [ my-github-actions-test ]
+   # paths:
+    #  - 'java-with-gradle/**'
   pull_request:
     branches: [ my-github-actions-test ]
     paths:
