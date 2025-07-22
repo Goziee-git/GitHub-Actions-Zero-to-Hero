@@ -2,7 +2,7 @@ package com.example.app;
 
 public class Application {
     public String getGreeting() {
-        return "Hello, Prosper This is your JAVA Application!";
+        return "Hello, Prosper This is your Java Application for your github action test!";
     }
 
     public static void main(String[] args) {
