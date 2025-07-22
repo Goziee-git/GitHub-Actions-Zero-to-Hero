@@ -32,6 +32,7 @@ This repository demonstrates how to use GitHub Actions with multiple projects in
 │   ├── gradlew
 │   ├── gradlew.bat
 │   └── gradle/wrapper/
+│       ├── gradle-wrapper.jar
 │       └── gradle-wrapper.properties
 │
 └── .github/workflows/
@@ -122,7 +123,12 @@ Gradle is a build automation tool that supports multi-language development. It c
    ├── src/main/java/        # Application source code
    ├── src/test/java/        # Test source code
    ├── build.gradle          # Build configuration
-   └── settings.gradle       # Project settings
+   ├── settings.gradle       # Project settings
+   ├── gradlew               # Unix Gradle wrapper script
+   ├── gradlew.bat          # Windows Gradle wrapper script
+   └── gradle/wrapper/
+       ├── gradle-wrapper.jar         # Wrapper JAR file
+       └── gradle-wrapper.properties  # Wrapper configuration
    ```
 
 2. **Create build.gradle file**:
@@ -150,6 +156,13 @@ Gradle is a build automation tool that supports multi-language development. It c
    gradle wrapper
    ```
    This creates gradlew and gradlew.bat scripts that allow building the project without having Gradle installed.
+   
+   The Gradle wrapper consists of:
+   - `gradle-wrapper.jar`: The wrapper program that downloads and manages the Gradle version
+   - `gradle-wrapper.properties`: Configuration file specifying which Gradle version to use
+   - `gradlew` and `gradlew.bat`: Scripts that invoke the wrapper JAR to run Gradle commands
+   
+   **Important**: Always commit the Gradle wrapper files to your repository, especially when using GitHub Actions. This ensures consistent builds and prevents errors like "Expected to find at least 1 Gradle Wrapper JARs but got only 0".
 
 4. **Build the project**:
    ```bash
